@@ -185,7 +185,7 @@ namespace EventHubSamples
         private static async Task<CancellationTokenSource> FetchDataFromPartition(EventHubConsumerClient consumer)
         {
             CancellationTokenSource cancellationSource = new CancellationTokenSource();
-            cancellationSource.CancelAfter(TimeSpan.FromSeconds(45));
+            cancellationSource.CancelAfter(TimeSpan.FromSeconds(timeToInvokeTokenCancellation));
 
             string firstPartition = (await consumer.GetPartitionIdsAsync(cancellationSource.Token)).First();
             EventPosition startingPosition = EventPosition.Earliest;
