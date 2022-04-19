@@ -84,15 +84,16 @@ namespace EventHubSamples
 
             var credential = new ClientSecretCredential(tenantId, clientId, clientSecret);
 
+            EventHubConsumerClientOptions eventHubConsumerClientOptions = null;
             if (useProxy)
             {
-                EventHubConsumerClientOptions eventHubConsumerClientOptions = new()
+                eventHubConsumerClientOptions = new()
                 {
                     ConnectionOptions = eventHubConnectionOptions
                 };
             }
 
-            var consumer = new EventHubConsumerClient(consumerGroup, eventHubNamespace, eventHubName, credential);
+            var consumer = new EventHubConsumerClient(consumerGroup, eventHubNamespace, eventHubName, credential, eventHubConsumerClientOptions);
 
             try
             {
@@ -115,15 +116,15 @@ namespace EventHubSamples
         {
             var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;
 
-            var consumer = new EventHubConsumerClient(consumerGroup, ehConnectionStr);
-
+            EventHubConsumerClientOptions eventHubConsumerClientOptions = null;
             if (useProxy)
             {
-                EventHubConsumerClientOptions eventHubConsumerClientOptions = new()
+                eventHubConsumerClientOptions = new()
                 {
                     ConnectionOptions = eventHubConnectionOptions
                 };
             }
+            var consumer = new EventHubConsumerClient(consumerGroup, ehConnectionStr, eventHubConsumerClientOptions);
 
             try
             {
@@ -156,15 +157,16 @@ namespace EventHubSamples
                 ExcludeVisualStudioCredential = false
             });
 
+            EventHubConsumerClientOptions eventHubConsumerClientOptions = null;
             if (useProxy)
             {
-                EventHubConsumerClientOptions eventHubConsumerClientOptions = new()
+                eventHubConsumerClientOptions = new()
                 {
                     ConnectionOptions = eventHubConnectionOptions
                 };
             }
 
-            var consumer = new EventHubConsumerClient(consumerGroup, eventHubNamespace, eventHubName, credential);
+            var consumer = new EventHubConsumerClient(consumerGroup, eventHubNamespace, eventHubName, credential, eventHubConsumerClientOptions);
 
             try
             {
